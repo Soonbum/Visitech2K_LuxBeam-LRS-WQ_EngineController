@@ -8,16 +8,19 @@ public partial class EngineController : Form
     public EngineController()
     {
         InitializeComponent();
+
+        // ... 온도 자동으로 갱신할 것: GetTemperatureSensorValue
     }
 
     private void ButtonConnect_Click(object sender, EventArgs e)
     {
-        // 자동으로 IP 주소와 포트를 설정하는 로직 추가 필요 ...
+        // 자동으로 IP 주소와 포트를 설정하는 로직 추가 필요 ... 192.168.0.2 부터 자동으로 탐색?
+        // 기본 LED DAC 값은 100으로 설정
     }
 
     private void ButtonSetLEDDAC_Click(object sender, EventArgs e)
     {
-        // ...
+        // ... SetLEDDACValue(LEDDACValue 값), SetSettingLEDDAC(true)
     }
 
     private void CheckBoxLEDOnOff_CheckedChanged(object sender, EventArgs e)
@@ -25,10 +28,12 @@ public partial class EngineController : Form
         if (CheckBoxLEDOnOff.Checked)
         {
             CheckBoxLEDOnOff.Text = "LED ON";
+            // ... SetDeviceLEDOn(true);
         }
         else
         {
             CheckBoxLEDOnOff.Text = "LED OFF";
+            // ... SetDeviceLEDOn(false);
         }
     }
 

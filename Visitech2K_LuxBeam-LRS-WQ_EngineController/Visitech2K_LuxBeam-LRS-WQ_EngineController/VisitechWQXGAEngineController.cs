@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Visitech2K_LuxBeam_LRS_WQ_EngineController;
 
@@ -302,7 +298,7 @@ public class VisitechWQXGAEngineController
         return isSetLECDAC;
     }
 
-    public double GetTemperatureSensorValue(int sensor)
+    public double GetTemperatureSensorValue()
     {
         return TemperatureSensorValue;
     }
