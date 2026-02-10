@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visitech2K_LuxBeam-LRS-WQ_EngineController", "Visitech2K_LuxBeam-LRS-WQ_EngineController\Visitech2K_LuxBeam-LRS-WQ_EngineController.csproj", "{5596C2E7-38AC-45E4-B44D-E792D86B45CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5596C2E7-38AC-45E4-B44D-E792D86B45CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5596C2E7-38AC-45E4-B44D-E792D86B45CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5596C2E7-38AC-45E4-B44D-E792D86B45CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5596C2E7-38AC-45E4-B44D-E792D86B45CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F647D082-905F-4C21-8DD9-1C86285C126D}
+	EndGlobalSection
+EndGlobal
