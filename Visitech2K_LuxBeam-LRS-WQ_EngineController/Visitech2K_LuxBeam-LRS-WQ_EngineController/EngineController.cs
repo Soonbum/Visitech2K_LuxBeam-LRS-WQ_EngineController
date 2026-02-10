@@ -8,33 +8,70 @@ public partial class EngineController : Form
     public EngineController()
     {
         InitializeComponent();
-
-        // ... 온도 자동으로 갱신할 것: GetTemperatureSensorValue
     }
 
     private void ButtonConnect_Click(object sender, EventArgs e)
     {
-        // 자동으로 IP 주소와 포트를 설정하는 로직 추가 필요 ... 192.168.0.2 부터 자동으로 탐색?
-        // 기본 LED DAC 값은 100으로 설정
+        try
+        {
+            string[] Engine1_ConnInfo = TextBoxEngine1Conn.Text.Split(':');
+            string[] Engine2_ConnInfo = TextBoxEngine2Conn.Text.Split(':');
+
+            string Engine1_IP = Engine1_ConnInfo[0];
+            string Engine2_IP = Engine2_ConnInfo[0];
+            int Engine1_Port = int.Parse(Engine1_ConnInfo[1]);
+            int Engine2_Port = int.Parse(Engine2_ConnInfo[1]);
+
+            EngineControllerLeft = new(Engine1_IP, Engine1_Port);
+            EngineControllerRight = new(Engine2_IP, Engine2_Port);
+
+            EngineControllerLeft.Connect(0);
+            EngineControllerRight.Connect(1);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"엔진 연결 정보 형식이 올바르지 않습니다. \"IP:포트\" 형식으로 입력해주세요.\n" + ex.Message, "연결 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+    }
+
+    private void ButtonGetTemp_Click(object sender, EventArgs e)
+    {
+        LabelTemp1.Text = EngineControllerLeft.GetTemperatureSensorValue().ToString("F2") + " °C";
+        LabelTemp2.Text = EngineControllerRight.GetTemperatureSensorValue().ToString("F2") + " °C";
     }
 
     private void ButtonSetLEDDAC_Click(object sender, EventArgs e)
     {
-        // ... SetLEDDACValue(LEDDACValue 값), SetSettingLEDDAC(true)
+        try
+        {
+            EngineControllerLeft.SetLEDDACValue(int.Parse(TextBoxLEDDACValue.Text));
+            EngineControllerRight.SetLEDDACValue(int.Parse(TextBoxLEDDACValue.Text));
+
+            EngineControllerLeft.SetSettingLEDDAC(true);
+            EngineControllerRight.SetSettingLEDDAC(true);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("LED DAC 값을 설정하는 중 오류가 발생했습니다.\n" + ex.Message, "설정 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 
     private void CheckBoxLEDOnOff_CheckedChanged(object sender, EventArgs e)
     {
-        if (CheckBoxLEDOnOff.Checked)
+        bool LedState = CheckBoxLEDOnOff.Checked;
+
+        if (LedState)
         {
             CheckBoxLEDOnOff.Text = "LED ON";
-            // ... SetDeviceLEDOn(true);
         }
         else
         {
             CheckBoxLEDOnOff.Text = "LED OFF";
-            // ... SetDeviceLEDOn(false);
         }
+
+        EngineControllerLeft.SetDeviceLEDOn(LedState);
+        EngineControllerRight.SetDeviceLEDOn(LedState);
     }
 
     private void TextBoxLEDDACValue_Validating(object sender, System.ComponentModel.CancelEventArgs e)

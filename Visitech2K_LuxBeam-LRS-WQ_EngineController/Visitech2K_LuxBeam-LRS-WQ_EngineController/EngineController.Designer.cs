@@ -29,35 +29,29 @@
         private void InitializeComponent()
         {
             ButtonConnect = new Button();
-            ListBoxEngineId = new ListBox();
             ButtonSetLEDDAC = new Button();
-            ListBoxEngineTemp = new ListBox();
             TextBoxLEDDACValue = new TextBox();
             CheckBoxLEDOnOff = new CheckBox();
+            TextBoxEngine1Conn = new TextBox();
+            TextBoxEngine2Conn = new TextBox();
+            LabelTemp1 = new Label();
+            LabelTemp2 = new Label();
+            ButtonGetTemp = new Button();
             SuspendLayout();
             // 
             // ButtonConnect
             // 
             ButtonConnect.Location = new Point(23, 23);
             ButtonConnect.Name = "ButtonConnect";
-            ButtonConnect.Size = new Size(172, 47);
+            ButtonConnect.Size = new Size(172, 52);
             ButtonConnect.TabIndex = 1;
             ButtonConnect.Text = "연결 (Connect)";
             ButtonConnect.UseVisualStyleBackColor = true;
             ButtonConnect.Click += ButtonConnect_Click;
             // 
-            // ListBoxEngineId
-            // 
-            ListBoxEngineId.FormattingEnabled = true;
-            ListBoxEngineId.ItemHeight = 15;
-            ListBoxEngineId.Location = new Point(23, 85);
-            ListBoxEngineId.Name = "ListBoxEngineId";
-            ListBoxEngineId.Size = new Size(172, 94);
-            ListBoxEngineId.TabIndex = 2;
-            // 
             // ButtonSetLEDDAC
             // 
-            ButtonSetLEDDAC.Location = new Point(23, 215);
+            ButtonSetLEDDAC.Location = new Point(23, 153);
             ButtonSetLEDDAC.Name = "ButtonSetLEDDAC";
             ButtonSetLEDDAC.Size = new Size(172, 47);
             ButtonSetLEDDAC.TabIndex = 3;
@@ -65,18 +59,9 @@
             ButtonSetLEDDAC.UseVisualStyleBackColor = true;
             ButtonSetLEDDAC.Click += ButtonSetLEDDAC_Click;
             // 
-            // ListBoxEngineTemp
-            // 
-            ListBoxEngineTemp.FormattingEnabled = true;
-            ListBoxEngineTemp.ItemHeight = 15;
-            ListBoxEngineTemp.Location = new Point(213, 85);
-            ListBoxEngineTemp.Name = "ListBoxEngineTemp";
-            ListBoxEngineTemp.Size = new Size(172, 94);
-            ListBoxEngineTemp.TabIndex = 4;
-            // 
             // TextBoxLEDDACValue
             // 
-            TextBoxLEDDACValue.Location = new Point(23, 268);
+            TextBoxLEDDACValue.Location = new Point(23, 206);
             TextBoxLEDDACValue.MaxLength = 5;
             TextBoxLEDDACValue.Name = "TextBoxLEDDACValue";
             TextBoxLEDDACValue.Size = new Size(172, 23);
@@ -87,7 +72,7 @@
             // CheckBoxLEDOnOff
             // 
             CheckBoxLEDOnOff.Appearance = Appearance.Button;
-            CheckBoxLEDOnOff.Location = new Point(213, 215);
+            CheckBoxLEDOnOff.Location = new Point(213, 153);
             CheckBoxLEDOnOff.Name = "CheckBoxLEDOnOff";
             CheckBoxLEDOnOff.Size = new Size(172, 47);
             CheckBoxLEDOnOff.TabIndex = 6;
@@ -96,16 +81,65 @@
             CheckBoxLEDOnOff.UseVisualStyleBackColor = true;
             CheckBoxLEDOnOff.CheckedChanged += CheckBoxLEDOnOff_CheckedChanged;
             // 
+            // TextBoxEngine1Conn
+            // 
+            TextBoxEngine1Conn.Location = new Point(213, 23);
+            TextBoxEngine1Conn.MaxLength = 5;
+            TextBoxEngine1Conn.Name = "TextBoxEngine1Conn";
+            TextBoxEngine1Conn.Size = new Size(172, 23);
+            TextBoxEngine1Conn.TabIndex = 7;
+            TextBoxEngine1Conn.Text = "192.168.0.2:5000";
+            // 
+            // TextBoxEngine2Conn
+            // 
+            TextBoxEngine2Conn.Location = new Point(213, 52);
+            TextBoxEngine2Conn.MaxLength = 5;
+            TextBoxEngine2Conn.Name = "TextBoxEngine2Conn";
+            TextBoxEngine2Conn.Size = new Size(172, 23);
+            TextBoxEngine2Conn.TabIndex = 8;
+            TextBoxEngine2Conn.Text = "192.168.0.3:5000";
+            // 
+            // LabelTemp1
+            // 
+            LabelTemp1.AutoSize = true;
+            LabelTemp1.Location = new Point(213, 90);
+            LabelTemp1.Name = "LabelTemp1";
+            LabelTemp1.Size = new Size(72, 15);
+            LabelTemp1.TabIndex = 9;
+            LabelTemp1.Text = "LabelTemp1";
+            // 
+            // LabelTemp2
+            // 
+            LabelTemp2.AutoSize = true;
+            LabelTemp2.Location = new Point(213, 122);
+            LabelTemp2.Name = "LabelTemp2";
+            LabelTemp2.Size = new Size(72, 15);
+            LabelTemp2.TabIndex = 10;
+            LabelTemp2.Text = "LabelTemp2";
+            // 
+            // ButtonGetTemp
+            // 
+            ButtonGetTemp.Location = new Point(23, 90);
+            ButtonGetTemp.Name = "ButtonGetTemp";
+            ButtonGetTemp.Size = new Size(172, 47);
+            ButtonGetTemp.TabIndex = 11;
+            ButtonGetTemp.Text = "온도 정보 업데이트";
+            ButtonGetTemp.UseVisualStyleBackColor = true;
+            ButtonGetTemp.Click += ButtonGetTemp_Click;
+            // 
             // EngineController
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(412, 320);
+            ClientSize = new Size(412, 250);
+            Controls.Add(ButtonGetTemp);
+            Controls.Add(LabelTemp2);
+            Controls.Add(LabelTemp1);
+            Controls.Add(TextBoxEngine2Conn);
+            Controls.Add(TextBoxEngine1Conn);
             Controls.Add(CheckBoxLEDOnOff);
             Controls.Add(TextBoxLEDDACValue);
-            Controls.Add(ListBoxEngineTemp);
             Controls.Add(ButtonSetLEDDAC);
-            Controls.Add(ListBoxEngineId);
             Controls.Add(ButtonConnect);
             Name = "EngineController";
             Text = "Visitech 2K LuxBeam LRS-WQ 컨트롤러";
@@ -115,10 +149,13 @@
 
         #endregion
         private Button ButtonConnect;
-        private ListBox ListBoxEngineId;
         private Button ButtonSetLEDDAC;
-        private ListBox ListBoxEngineTemp;
         private TextBox TextBoxLEDDACValue;
         private CheckBox CheckBoxLEDOnOff;
+        private TextBox TextBoxEngine1Conn;
+        private TextBox TextBoxEngine2Conn;
+        private Label LabelTemp1;
+        private Label LabelTemp2;
+        private Button ButtonGetTemp;
     }
 }
