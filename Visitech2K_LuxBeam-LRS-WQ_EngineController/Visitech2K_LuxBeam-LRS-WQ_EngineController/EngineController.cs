@@ -1,13 +1,27 @@
+using System.Runtime.InteropServices;
+
 namespace Visitech2K_LuxBeam_LRS_WQ_EngineController;
 
 public partial class EngineController : Form
 {
+    // 콘솔 할당 API
+    [DllImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    static extern bool AllocConsole();
+
+    // 콘솔 해제 API (필요시)
+    [DllImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    static extern bool FreeConsole();
+
     private VisitechWQXGAEngineController EngineControllerLeft;
     private VisitechWQXGAEngineController EngineControllerRight;
 
     public EngineController()
     {
         InitializeComponent();
+
+        AllocConsole();
     }
 
     private void ButtonConnect_Click(object sender, EventArgs e)
@@ -27,6 +41,9 @@ public partial class EngineController : Form
 
             EngineControllerLeft.Connect(0);
             EngineControllerRight.Connect(1);
+
+            EngineControllerLeft.StartBackgroundThread();
+            EngineControllerRight.StartBackgroundThread();
         }
         catch (Exception ex)
         {
