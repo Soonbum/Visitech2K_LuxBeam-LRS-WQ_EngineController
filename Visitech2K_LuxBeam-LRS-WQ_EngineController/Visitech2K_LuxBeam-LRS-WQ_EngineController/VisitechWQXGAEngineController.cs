@@ -267,7 +267,14 @@ public class VisitechWQXGAEngineController
 
     public int GetLEDDAC()
     {
-        return LEDDACValue;
+        string cmd = $"GET AMPLITUDE";
+        string returnStr = SendCommand(cmd);
+
+        // 응답 문자열에서 LED DAC 값 추출
+        if (int.TryParse(returnStr.AsSpan(5), out int value))
+            return value;
+
+        return 0;
     }
 
     public double GetTemperatureSensor()
@@ -276,7 +283,7 @@ public class VisitechWQXGAEngineController
         Console.WriteLine($"{id}: GET LED TEMP --> {returnStr}");
 
         // 응답 문자열에서 온도 값 추출
-        if (double.TryParse(returnStr.Substring(5, 5), out double value))
+        if (double.TryParse(returnStr.AsSpan(5, 5), out double value))
             return (double)value;
 
         return 0.0;

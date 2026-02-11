@@ -37,6 +37,9 @@
             LabelTemp1 = new Label();
             LabelTemp2 = new Label();
             ButtonGetTemp = new Button();
+            ButtonGetLEDDAC = new Button();
+            LabelLEDDAC1 = new Label();
+            LabelLEDDAC2 = new Label();
             SuspendLayout();
             // 
             // ButtonConnect
@@ -51,7 +54,7 @@
             // 
             // ButtonSetLEDDAC
             // 
-            ButtonSetLEDDAC.Location = new Point(23, 153);
+            ButtonSetLEDDAC.Location = new Point(23, 212);
             ButtonSetLEDDAC.Name = "ButtonSetLEDDAC";
             ButtonSetLEDDAC.Size = new Size(172, 47);
             ButtonSetLEDDAC.TabIndex = 3;
@@ -61,7 +64,7 @@
             // 
             // TextBoxLEDDACValue
             // 
-            TextBoxLEDDACValue.Location = new Point(23, 206);
+            TextBoxLEDDACValue.Location = new Point(23, 265);
             TextBoxLEDDACValue.MaxLength = 5;
             TextBoxLEDDACValue.Name = "TextBoxLEDDACValue";
             TextBoxLEDDACValue.Size = new Size(172, 23);
@@ -72,7 +75,7 @@
             // CheckBoxLEDOnOff
             // 
             CheckBoxLEDOnOff.Appearance = Appearance.Button;
-            CheckBoxLEDOnOff.Location = new Point(213, 153);
+            CheckBoxLEDOnOff.Location = new Point(213, 212);
             CheckBoxLEDOnOff.Name = "CheckBoxLEDOnOff";
             CheckBoxLEDOnOff.Size = new Size(172, 47);
             CheckBoxLEDOnOff.TabIndex = 6;
@@ -127,11 +130,42 @@
             ButtonGetTemp.UseVisualStyleBackColor = true;
             ButtonGetTemp.Click += ButtonGetTemp_Click;
             // 
+            // ButtonGetLEDDAC
+            // 
+            ButtonGetLEDDAC.Location = new Point(23, 150);
+            ButtonGetLEDDAC.Name = "ButtonGetLEDDAC";
+            ButtonGetLEDDAC.Size = new Size(172, 47);
+            ButtonGetLEDDAC.TabIndex = 12;
+            ButtonGetLEDDAC.Text = "LED DAC 가져오기";
+            ButtonGetLEDDAC.UseVisualStyleBackColor = true;
+            ButtonGetLEDDAC.Click += ButtonGetLEDDAC_Click;
+            // 
+            // LabelLEDDAC1
+            // 
+            LabelLEDDAC1.AutoSize = true;
+            LabelLEDDAC1.Location = new Point(213, 150);
+            LabelLEDDAC1.Name = "LabelLEDDAC1";
+            LabelLEDDAC1.Size = new Size(88, 15);
+            LabelLEDDAC1.TabIndex = 13;
+            LabelLEDDAC1.Text = "LabelLEDDAC1";
+            // 
+            // LabelLEDDAC2
+            // 
+            LabelLEDDAC2.AutoSize = true;
+            LabelLEDDAC2.Location = new Point(213, 182);
+            LabelLEDDAC2.Name = "LabelLEDDAC2";
+            LabelLEDDAC2.Size = new Size(88, 15);
+            LabelLEDDAC2.TabIndex = 14;
+            LabelLEDDAC2.Text = "LabelLEDDAC2";
+            // 
             // EngineController
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(412, 250);
+            ClientSize = new Size(412, 306);
+            Controls.Add(LabelLEDDAC2);
+            Controls.Add(LabelLEDDAC1);
+            Controls.Add(ButtonGetLEDDAC);
             Controls.Add(ButtonGetTemp);
             Controls.Add(LabelTemp2);
             Controls.Add(LabelTemp1);
@@ -157,5 +191,8 @@
         private Label LabelTemp1;
         private Label LabelTemp2;
         private Button ButtonGetTemp;
+        private Button ButtonGetLEDDAC;
+        private Label LabelLEDDAC1;
+        private Label LabelLEDDAC2;
     }
 }

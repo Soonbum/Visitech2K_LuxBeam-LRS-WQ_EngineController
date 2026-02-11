@@ -107,4 +107,10 @@ public partial class EngineController : Form
             e.Cancel = true;
         }
     }
+
+    private void ButtonGetLEDDAC_Click(object sender, EventArgs e)
+    {
+        LabelLEDDAC1.Text = EngineControllerLeft.GetLEDDACValue().ToString("F2");
+        LabelLEDDAC2.Text = EngineControllerRight.GetLEDDACValue().ToString("F2");
+    }
 }
