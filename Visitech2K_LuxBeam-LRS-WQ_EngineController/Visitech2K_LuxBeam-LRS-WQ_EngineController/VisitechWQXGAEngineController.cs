@@ -186,6 +186,9 @@ public class VisitechWQXGAEngineController
 
         response = SendCommand("SET LUT CONFIG 1 1000");
         Console.WriteLine($"{id}: {response}");
+
+        response = SendCommand("GET VERSION");
+        Console.WriteLine($"{id}: {response}");
     }
 
     private string SendCommand(string cmd)
@@ -206,17 +209,17 @@ public class VisitechWQXGAEngineController
             stream.Write(data, 0, data.Length);
             stream.Flush();
 
-            // 응답 대기 및 읽기 (ReadLine 스타일)
-            Thread.Sleep(100);
-            using StreamReader reader = new(stream, Encoding.ASCII, leaveOpen: true);
-            // 응답이 올 때까지 대기 (타임아웃은 아래 '참고' 섹션 확인)
-            // ReadLine()은 \n 또는 \r\n을 만날 때까지 블로킹(대기)됩니다.
-            string? response = reader.ReadLine();
+            // 장비가 응답을 준비할 충분한 시간을 줍니다.
+            Thread.Sleep(200);
 
-            if (response != null)
-            {
-                return response.Trim();
-            }
+            byte[] buffer = new byte[4096];
+            int bytesRead = stream.Read(buffer, 0, buffer.Length);
+
+            // 수신된 전체 문자열 확인
+            string fullResponse = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+
+            if (fullResponse != null)
+                return fullResponse.Trim();
 
             return "No Response";
         }
@@ -272,7 +275,8 @@ public class VisitechWQXGAEngineController
         string returnStr = SendCommand("GET LED TEMP");
         Console.WriteLine($"{id}: GET LED TEMP --> {returnStr}");
 
-        if (double.TryParse(returnStr, out double value))
+        // 응답 문자열에서 온도 값 추출
+        if (double.TryParse(returnStr.Substring(5, 5), out double value))
             return (double)value;
 
         return 0.0;
